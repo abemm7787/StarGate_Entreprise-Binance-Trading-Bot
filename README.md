@@ -1,2 +1,2 @@
-# R2D2 trading bot
+# StarGate DeCa trading bot
 Custom Bot for daily trading
