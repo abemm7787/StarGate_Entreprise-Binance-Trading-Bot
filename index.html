@@ -17,17 +17,27 @@
       height: 240;
       border: solid lightgreen 1px;
     }
+    #left {width: 700px;}
+    #right { float:right;}
   </style>
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"> </script>
 </head>
 
 <body>
+  <div id="container"> 
+  <div id="right">
+    <h1> quotes</h1>
+    <div id="quotes" class="panel"> </div>
+    <h1> trades </h1>
+    <div id="trades" class="panel"> </div>
+  </div>
+  <div id="left">        
+    <h1> Chart </h1>
+    <div id="chart"> </div>
+  </div> 
   
-  <h1> quotes</h1>
-  <div id="quotes" class="panel"> </div>
-  <h1> bars </h1>
-  <div id="bars" class="panel"> </div>
-  <h1> trades </h1>
-  <div id="trades" class="panel"> </div>
+  </div>
+  
 
   <script src="gridbot.js"></script>
 </body>
