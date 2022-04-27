@@ -58,13 +58,19 @@ fetch(bars_url, {
     }
 }).then((r) => r.json()).then((response) => {
 console.log(response)
-const data = response.bars.map( bar => {
-    open:bar.o
-})
-// looks familiar, inside joke
-candleSeries.setData(data)
-})
 
+const data = response.bars.map( bar => (
+{   open:bar.o,
+    high:bar.h,
+    low:bar.l,
+    close:bar.c,
+    time:Date.parse(bar.t) / 1000
+}
+))
+// looks familiar, inside joke
+
+})
+//candleSeries.setData(data)
 //promise
 
 
