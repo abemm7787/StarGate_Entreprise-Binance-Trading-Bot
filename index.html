@@ -1,13 +1,22 @@
 <html>
 
 <head>
- 
-  <title> gridbot demo </title>
+
+  <title> StarGate Entreprise</title>
+  <link rel="stylesheet" href="starGate.css">
+  <link />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     body {
       background: black;
       color: lightgreen;
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    }
+
+    #johnny {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 35px;
+      margin-left: 10px;
     }
 
     .panel {
@@ -17,33 +26,64 @@
       height: 240;
       border: solid lightgreen 1px;
     }
-    #left {width: 700px; }
-    #right { float:right;}
-    #container{ width: 1400px}
+
+    #left {
+      width: 700px;
+      margin-top: 30px;
+    }
+
+    #right {
+      float: right;
+    }
+
+    #container {
+      width: 1400px
+    }
   </style>
   <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"> </script>
 </head>
 
 <body>
+  <div>
+
+    <div>
+      <i class="fa fa-car"></i>
+      <i class="fa fa-car" style="font-size:48px;"></i>
+      <i class="fa fa-car" style="font-size:60px;color:red;"></i>
+      <i id="johnny"> Johnny 5 </i>
+    </div>
 
 
-  <div id="container"> 
+    <div class="alert">
+      <span class="	fas fa-exclamation-circle"></span>
+      <span class="message" style="color:rgb(5, 5, 0)"> Stop Lost in place
+    </div>
+    <span class="close-btn"></span>
+  </div>
+  <div id="container">
 
     <div id="right">
-    <h1> quotes</h1>
-    <div id="quotes" class="panel"> </div>
-    <h1> trades </h1>
-    <div id="trades" class="panel"> </div>
-  </div>
-  <div id="left">        
-    <h1> Chart </h1>
-    <div id="chart"> </div>
-  </div>   
+      <h1> quotes</h1>
+      <div id="quotes" class="panel"> </div>
+      <h1> trades </h1>
+      <div id="trades" class="panel"> </div>
+    </div>
+    <div id="left">
+      <h1> Chart </h1>
+      <div id="chart"> </div>
+      <h1>Stop Lost <h1>
+
+
+    </div>
+    <input placeholder="Enter Limit" type="text" id="text1"></input>
+    <input type="button" id="stopLoss" value="Add" onclick="add_element_to_array()"><input>
+    <input type="button" id="button2" value="Display" onclick="display_array();"></input>
+    <div id="Result"></div>
 
   </div>
-  
 
-  <script src="gridbot.js"></script>
+
+  <script src="starGate.js"></script>
 </body>
 
 

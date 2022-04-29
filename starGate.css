@@ -1,0 +1,22 @@
+
+
+.alert{
+    background-color: blanchedalmond;
+    width:250px;
+    padding: 5px 30px;
+    position: absolute;
+    border-radius: 4px ;
+    border-left: 4px solid #ffa502;
+    right: 0px;
+    top:10px;
+}
+
+.alert .fa-exclamation-circle{
+    position: absolute;
+    left: 1px;
+    top:2%;
+  
+    color: #ce8500;
+    font-size:30px;
+
+}
