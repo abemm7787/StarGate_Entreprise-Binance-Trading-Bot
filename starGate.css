@@ -2,21 +2,44 @@
 
 .alert{
     background-color: blanchedalmond;
-    width:250px;
+    margin-right: 30px;
+    width:140px;
     padding: 5px 30px;
     position: absolute;
     border-radius: 4px ;
     border-left: 4px solid #ffa502;
     right: 0px;
     top:10px;
+    overflow: hidden;
 }
 
-.alert .fa-exclamation-circle{
+
+.alert .fa-bitcoin{
     position: absolute;
-    left: 1px;
+    left: 5px;
     top:2%;
-  
-    color: #ce8500;
     font-size:30px;
+}
+
+.alert .message{
+    padding: 12px 5px;
+    font-size: 15px;
 
 }
+
+.alert .close-btn:hover{
+    background: #ffc766;
+}
+
+.alert .close-btn{
+    position: absolute;
+    right:0.74px;
+    top: 0.2px;
+border: none;
+background: none;
+cursor: pointer;
+transform: translate(15%);
+background: #ffd080;
+padding: 7px 7px;
+
+} 
