@@ -39,6 +39,12 @@
     #container {
       width: 1400px
     }
+
+    #dispearButton{
+      display: none;
+    }
+  
+   
   </style>
   <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"> </script>
 </head>
@@ -52,14 +58,21 @@
       <i class="fa fa-car" style="font-size:60px;color:red;"></i>
       <i id="johnny"> Johnny 5 </i>
     </div>
+<script>
 
-    <div class="alert show"> 
-    <div class="alert">
+  function myDispear(){
+document.getElementById("alert").style.display = "none";
+
+  }
+</script>
+    <div class="show"> 
+    <div id="alert">
       <span style="font-size:27px; color:rgb(20, 3, 255)" class="fa fa-bitcoin"></span>
-      <span class="message" style="color:#ce8500"> Stop Lost In Place <button class="close-btn">X</button>
+      <span  class="message" style="color:#ce8500"> Stop Lost In Place <button onclick="myDispear()" class="close-btn">X</button>
       </div>
 
     </div>
+
   </div>
 
   </div>
@@ -85,6 +98,21 @@
     <div id="Result"></div>
 
   </div>
+  <h1>Buy </h1>
+</div>
+<input placeholder="Enter Limit" type="text" id="text1"></input>
+<input type="button" id="stopLoss" value="Add" onclick="add_element_to_array()"><input>
+<input type="button" id="button2" value="Display" onclick="display_array();"></input>
+<div id="Result"></div>
+
+<h1>Sell </h1>
+<input placeholder="Enter Limit" type="text" id="text1"></input>
+<input type="button" id="stopLoss" value="Add" onclick="add_element_to_array()"><input>
+<input type="button" id="button2" value="Display" onclick="display_array();"></input>
+<div id="Result"></div>
+
+
+</div>
 
   <script src="starGate.js"></script>
 </body>

@@ -18,7 +18,7 @@ const input = document.querySelector('input');
 const log = document.getElementById('stopLoss');
 input.addEventListener('input', updateValue);
 let stopLost = 0
-var token 
+var token
 
 function updateValue(e) {
     e.target.value
@@ -28,26 +28,27 @@ function updateValue(e) {
 // Stop Losts 
 var x = 0
 var stopLoss = Array();
-let arrayAbove = [] 
+let arrayAbove = []
 
 var arrName = new Array()
 
-async function add_element_to_array(){
+async function add_element_to_array() {
 
-  let promise = new Promise((resolve, reject) =>{
-  stopLoss[x] = document.getElementById("text1").value;
-    arrayAbove.push(parseFloat(stopLoss[x].replace(/[a-z]/i, '')))
-    alert("Element:" + stopLoss[x] + "Added at index" + x);
-    x++;
-    document.getElementById("stopLoss").value = "";
- 
-  token = Object.values(arrayAbove)[0] // 0 index of the object
-   
- 
- })
+    let promise = new Promise((resolve, reject) => {
+        stopLoss[x] = document.getElementById("text1").value;
+        arrayAbove.push(parseFloat(stopLoss[x].replace(/[a-z]/i, '')
+        ))
+        alert("Crypto Price of " + stopLoss[x] + ": Added to Smart Archive index " + x);
+        x++;
+        document.getElementById("stopLoss").value = "";
+
+        token = Object.values(arrayAbove)[0] // 0 index of the object
 
 
- 
+    })
+
+
+
 }
 
 
@@ -69,6 +70,10 @@ let currentBar = {}
 let trades = [];
 
 
+
+
+
+var stopLossAlert = document.getElementById("alert").style.display = "none";
 
 // compare trades with stoplost number 
 
@@ -136,12 +141,24 @@ fetch(bars_url, {
     ));
 
     currentBar = data[data.length - 1]
-    console.log(currentBar)
     candleSeries.setData(data)
 })
 
 
 //promise
+
+function makeFunc() {
+
+    function displayName() {
+        console.log("im a string")
+
+        var name = document.getElementById("alert").style.display = "block";
+        return name
+    }
+    return displayName
+}
+var myFunc = makeFunc()
+
 
 
 
@@ -150,7 +167,6 @@ socket.onmessage = function starGate(event, stop) {
     // Meant to parse strings and return an object with key value pairs, so far provides one element. 
     const message = data[0]['msg']
 
-    // console.log(data)
     if (message == 'connected') {
         //  console.log("you got Authenticated bruh")
         socket.send(JSON.stringify(auth))
@@ -178,8 +194,6 @@ socket.onmessage = function starGate(event, stop) {
 
         }
         if (type == 't') {
-            //console.log("got a trade")
-            //            console.log(data[key])
 
             const tradeElement = document.createElement("div")
             tradeElement.className = 'trade'
@@ -192,15 +206,23 @@ socket.onmessage = function starGate(event, stop) {
                 tradesElement.removeChild(elements[0]) // removes the first one, the oldest one
             }
             trades.push(data[key].p)
-            //console.log(trades)
+
             // everytime a trade comes in push price to trades 
             // we can use the array of trends to render the next bar
-
+            console.log(token)
             var open = trades[0]
-            var close = trades[trades.length - 1]
+            var close = trades[trades.length - 1] 
+            var round = Math.round(close)
+          
+            if (token >= round) {
+                console.log(round)
+                myFunc()
+            }
+
+
             var high = Math.max(...trades) //accepts more than one val
             var low = Math.min(...trades)
-            //      console.log(open, high, low , close)
+
 
             candleSeries.update({
                 time: currentBar.time + 60,
@@ -212,16 +234,11 @@ socket.onmessage = function starGate(event, stop) {
             })
 
         }
-var local = token
-   //     console.log(close)
-     //   console.log(stop)
-        console.log(local)
 
-if (close <=  local ){
-  console.log("My Name is Johny 5")
-}
+        //    var finalPrice = close.replace(/undefined/i, '');
+        //  var local = token.replace(/undefined/i, '');
 
-  
+
         // Essentally I am selecting a trade div on the page while dynamically adding those elements to the page in javascript. Appending trade element by trade element
         //Dom manipulation
 
@@ -239,11 +256,10 @@ if (close <=  local ){
             }
             candleSeries.update(currentBar)
 
-          
+
         }
     }
 
 
 }
 
-//console.log(socket)

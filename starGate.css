@@ -1,6 +1,6 @@
 
 
-.alert{
+#alert{
     background-color: blanchedalmond;
     margin-right: 30px;
     width:140px;
@@ -14,24 +14,24 @@
 }
 
 
-.alert .fa-bitcoin{
+#alert .fa-bitcoin{
     position: absolute;
     left: 5px;
     top:2%;
     font-size:30px;
 }
 
-.alert .message{
+#alert .message{
     padding: 12px 5px;
     font-size: 15px;
 
 }
 
-.alert .close-btn:hover{
+#alert .close-btn:hover{
     background: #ffc766;
 }
 
-.alert .close-btn{
+#alert .close-btn{
     position: absolute;
     right:0.74px;
     top: 0.2px;
@@ -43,3 +43,14 @@ background: #ffd080;
 padding: 7px 7px;
 
 } 
+
+
+#alert.show{
+    animation: slide_show 1s ease forwards;
+}
+
+@keyframes show_slide{
+  0%{
+      transform: translateX(100%) ;
+  }  
+}
