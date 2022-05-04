@@ -89,27 +89,39 @@ document.getElementById("alert").style.display = "none";
       <h1>Bar Chart</h1>
       <div id="chart"> </div>
       <h1>Stop Lost <h1>
-
-
     </div>
     <input placeholder="Enter Limit" type="text" id="text1"></input>
     <input type="button" id="stopLoss" value="Add" onclick="add_element_to_array()"><input>
     <input type="button" id="button2" value="Display" onclick="display_array();"></input>
     <div id="Result"></div>
-
+  
+    <h1>Buy </h1>
+  <input placeholder="Enter Limit" type="text" id="buyText"></input>
+  <input type="button" id="buyOrder" value="Add" onclick="addBuy_element_to_array()"><input>
+  <input type="button" id="button2" value="Display" onclick="display_array();"></input>
+  <div id="Result"></div>
+  
+  
+  <h1>Sell </h1>
+  <input placeholder="Enter Limit" type="text" id="sellText"></input>
+  <input type="button" id="stopLoss" value="Add" onclick="addSell_element_to_array()"><input>
+  <input type="button" id="button2" value="Display" onclick="display_array();"></input>
+  <div id="Result"></div>
+  
+  
+  
+  
   </div>
-  <h1>Buy </h1>
-</div>
-<input placeholder="Enter Limit" type="text" id="text1"></input>
-<input type="button" id="stopLoss" value="Add" onclick="add_element_to_array()"><input>
-<input type="button" id="button2" value="Display" onclick="display_array();"></input>
-<div id="Result"></div>
 
-<h1>Sell </h1>
-<input placeholder="Enter Limit" type="text" id="text1"></input>
-<input type="button" id="stopLoss" value="Add" onclick="add_element_to_array()"><input>
-<input type="button" id="button2" value="Display" onclick="display_array();"></input>
-<div id="Result"></div>
+
+
+  
+
+
+
+</div>
+
+
 
 
 </div>
