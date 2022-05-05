@@ -34,6 +34,8 @@ let arrayBuy = []
 var x = 0
 var stopLoss = Array();
 let arrayAbove = []
+
+
 // StopLoss
 function add_element_to_array() {
     stopLoss[x] = document.getElementById("text1").value;
@@ -42,7 +44,10 @@ function add_element_to_array() {
     alert("Crypto Price of " + stopLoss[x] + ": Added to Smart Archive index " + x);
     x++;
     //document.getElementById("stopLoss").value = "";
-  stopLosstoken = Object.values(arrayAbove) // converts objects to arrays
+
+        stopLosstoken = Object.values(arrayAbove)
+
+//   stopLosstoken = Object.values(arrayAbove) // converts objects to arrays
 }
 // BuyOrder
 function addBuy_element_to_array() {
@@ -52,7 +57,10 @@ function addBuy_element_to_array() {
     alert("Crypto Price of " + buyOrder[y] + ": Added to Smart Archive index " + y);
     y++;
     //document.getElementById("stopLoss").value = "";
+  
     buyToken = Object.values(arrayBuy) // converts objects to arrays
+
+
 }
 // Sell Order
 function addSell_element_to_array(){
@@ -222,10 +230,7 @@ socket.onmessage = function starGate(event, stop) {
                 candleSeries.update(currentBar)
             }
 
-
-
             trades.push(data[key].p)
-
             console.log(stopLosstoken)
             console.log(buyToken)
             console.log(sellToken)
@@ -233,22 +238,63 @@ socket.onmessage = function starGate(event, stop) {
             var close = trades[trades.length - 1]
             var round = Math.round(close)
 
+// I had to put a promise here to perform a async and await call.
+// At first, only one value from the input field had been allowed the charts would freeze therfore The iife function took effect avoiding pollutiing the global scope.
+// The Promise gives the function a resolve or reject within its block scope.
+// The iffe will wait until the promise is excute by invovle the proper values through the filter that would match the condition. Until then, the promise is resolve, and invokes the call back function to provide an alert() for the end user.
+ 
+function ensureStopLoss() {
+    return new Promise(function (resolve, reject) {
+        (function waitForFoo(){
+           const syncRes = stopLosstoken.filter((i) => {
+             	if(i > 1212){
+               myFunc()
+                     }});
+            return resolve();
+           // setTimeout(waitForFoo, 30);
+        })();
+    });
+}
 
-            if (stopLosstoken >= 1212) {
-                console.log(round)
-                myFunc()
-            }
+console.log(ensureStopLoss())
+// const syncRes = stopLosstoken.filter((i) => {
+// 	if(i % 2 === 0){
+//         myFunc()
+//     }
+// });
 
-            if (buyToken >= 1212) {
-                console.log(round)
-                myFunc()
-            }
-            if (sellToken >= 1212) {
-                console.log(round)
-                myFunc()
-            }
+// console.log(syncRes);
+// 2,4
 
+function ensureBuy() {
+    return new Promise(function (resolve, reject) {
+        (function waitForBuy(){
+           const syncBuyToken = buyToken.filter((i) => {
+             	if(i > 1212){
+               myFunc()
+                     }});
+            return resolve();
+           // setTimeout(waitForFoo, 30);
+        })();
+    });
+}
+console.log(ensureBuy())
+  
+function ensureSell() {
+    return new Promise(function (resolve, reject) {
+        (function waitForSell(){
+           const syncSellToken = sellToken.filter((i) => {
+             	if(i > 1212){
+               myFunc()
+                     }});
+            return resolve();
+           // setTimeout(waitForFoo, 30);
+        })();
+    });
+}
 
+console.log(ensureSell())
+           
             var high = Math.max(...trades) //accepts more than one val
             var low = Math.min(...trades)
 
