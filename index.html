@@ -1,13 +1,22 @@
 <html>
 
 <head>
- 
-  <title> gridbot demo </title>
+
+  <title> StarGate Entreprise</title>
+  <link rel="stylesheet" href="starGate.css">
+  <link />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     body {
       background: black;
       color: lightgreen;
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    }
+
+    #johnny {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: 35px;
+      margin-left: 10px;
     }
 
     .panel {
@@ -17,33 +26,108 @@
       height: 240;
       border: solid lightgreen 1px;
     }
-    #left {width: 700px; }
-    #right { float:right;}
-    #container{ width: 1400px}
+
+    #left {
+      width: 700px;
+      margin-top: 30px;
+    }
+
+    #right {
+      float: right;
+    }
+
+    #container {
+      width: 1400px
+    }
+
+    #dispearButton {
+      display: none;
+    }
   </style>
   <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"> </script>
 </head>
 
 <body>
+  <div>
+
+    <div>
+      <i class="fa fa-car"></i>
+      <i class="fa fa-car" style="font-size:48px;"></i>
+      <i class="fa fa-car" style="font-size:60px;color:red;"></i>
+      <i id="johnny"> Johnny 5 </i>
+    </div>
+    <script>
+ 
+    </script>
+    <div class="show">
+      <div id="alert">
+        <span style="font-size:27px; color:rgb(20, 3, 255)" class="fa fa-bitcoin"></span>
+        <span class="message" style="color:#ce8500"> Stop Lost In Place <button onclick="myDispear()"
+            class="close-btn">X</button>
+      </div>
 
 
-  <div id="container"> 
+      
+
+    </div>
+
+    <div class="show2">
+      <div id="buyAlert">
+        <span style="font-size:27px; color:rgb(32, 255, 3)" class="fa fa-bitcoin"></span>
+        <span class="message" style="color:#007fce"> Price Bought at <button onclick="dispearBuy()"
+            class="close-btn">X</button>
+      </div>
+    </div>
+
+    <div class="show3">
+      <div id="sellAlert">
+        <span style="font-size:27px; color:rgb(255, 37, 3)" class="fa fa-bitcoin"></span>
+        <span class="message" style="color:#c7ce00"> Price sold at <button onclick="dispearSell()"
+            class="close-btn">X</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  </div>
+  <div id="container">
 
     <div id="right">
-    <h1> quotes</h1>
-    <div id="quotes" class="panel"> </div>
-    <h1> trades </h1>
-    <div id="trades" class="panel"> </div>
-  </div>
-  <div id="left">        
-    <h1> Chart </h1>
-    <div id="chart"> </div>
-  </div>   
+      <h1> quotes</h1>
+      <div id="quotes" class="panel"> </div>
+      <h1> trades </h1>
+      <div id="trades" class="panel"> </div>
+    </div>
+    <div id="left">
+
+      <h1>Bar Chart</h1>
+      <div id="chart"> </div>
+      <h1>Stop Lost <h1>
+    </div>
+    <input placeholder="Enter Limit" type="text" id="text1"></input>
+    <button id="stopLoss" value="Add" onclick="add_element_to_array()"> Add </button>
+    <input type="button" id="button2" value="Display" onclick="display_array();"></input>
+    <div id="Result"></div>
+
+    <h1>Buy </h1>
+    <input placeholder="Enter Limit" type="text" id="buyText"></input>
+    <button id="buyOrder" value="Add" onclick="addBuy_element_to_array()"> Add </button>
+
+    <input type="button" id="button2" value="Display" onclick="display_array();"></input>
+    <div id="Result"></div>
+
+
+    <h1>Sell </h1>
+    <input placeholder="Enter Limit" type="text" id="sellText"></input>
+    <button id="stopLoss" value="Add" onclick="addSell_element_to_array()"> Add </button>
+    <input type="button" id="button2" value="Display" onclick="display_array();"></input>
+    <div id="Result"></div>
 
   </div>
-  
-
-  <script src="gridbot.js"></script>
+  </div>
+  </div>
+  <script src="starGate.js"></script>
 </body>
 
 
