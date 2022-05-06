@@ -44,10 +44,9 @@ function add_element_to_array() {
     alert("Crypto Price of " + stopLoss[x] + ": Added to Smart Archive index " + x);
     x++;
     //document.getElementById("stopLoss").value = "";
-
         stopLosstoken = Object.values(arrayAbove)
 
-//   stopLosstoken = Object.values(arrayAbove) // converts objects to arrays
+
 }
 // BuyOrder
 function addBuy_element_to_array() {
@@ -56,8 +55,7 @@ function addBuy_element_to_array() {
     ))
     alert("Crypto Price of " + buyOrder[y] + ": Added to Smart Archive index " + y);
     y++;
-    //document.getElementById("stopLoss").value = "";
-  
+   
     buyToken = Object.values(arrayBuy) // converts objects to arrays
 
 
@@ -69,7 +67,7 @@ function addSell_element_to_array(){
     ))
     alert("Crypto Price of " + sellOrder[z] + ": Added to Smart Archive index " + z);
     z++;
-    //document.getElementById("stopLoss").value = "";
+
     sellToken = Object.values(arraySell) // converts objects to arrays
 }
 
@@ -92,6 +90,8 @@ function display_array() {
 let currentBar = {}
 let trades = [];
 var stopLossAlert = document.getElementById("alert").style.display = "none";
+ var buyAlert = document.getElementById("buyAlert").style.display = "none";
+ var sellAlert = document.getElementById("sellAlert").style.display = "none";
 // compare trades with stoplost number 
 var chart = LightweightCharts.createChart(document.getElementById("chart"), {
     width: 700,
@@ -135,8 +135,6 @@ fetch(bars_url, {
 }).then((r) => r.json()).then((response) => {
     console.log(response) 
 
-
-
     // Chart bars for a day
     var data = response.bars.map(bar => (
         {
@@ -146,7 +144,7 @@ fetch(bars_url, {
             close: bar.c,
 
             time: Date.parse(bar.t) / 1000
-            // looks familiar, inside joke.
+    
         }
     ));
 
@@ -159,7 +157,6 @@ function makeFunc() {
 
     function displayName() {
         console.log("im a string")
-
         var name = document.getElementById("alert").style.display = "block";
         return name
     }
@@ -168,17 +165,35 @@ function makeFunc() {
 var myFunc = makeFunc()
 
 //Buy Order Alert
+function makeBuy() {
+
+    function displayBuy() {
+        console.log("im a string")
+        var buybuy = document.getElementById("buyAlert").style.display = "block";
+        return buybuy
+    }
+    return displayBuy
+}
+var myBuy = makeBuy()
+
 
 
 
 // Sell Order Alert
 
+function makeSell() {
 
+    function displaySell() {
+        console.log("im a string")
+        var sell = document.getElementById("sellAlert").style.display = "block";
+        return sell
+    }
+    return displaySell
+}
+var mySell = makeSell()
 socket.onmessage = function starGate(event, stop) {
     const data = JSON.parse(event.data)
-   
-    const message = data[0]['msg']
-
+       const message = data[0]['msg']
     if (message == 'connected') {
     
         socket.send(JSON.stringify(auth))
@@ -257,21 +272,14 @@ function ensureStopLoss() {
 }
 
 console.log(ensureStopLoss())
-// const syncRes = stopLosstoken.filter((i) => {
-// 	if(i % 2 === 0){
-//         myFunc()
-//     }
-// });
 
-// console.log(syncRes);
-// 2,4
 
 function ensureBuy() {
     return new Promise(function (resolve, reject) {
         (function waitForBuy(){
            const syncBuyToken = buyToken.filter((i) => {
              	if(i > 1212){
-               myFunc()
+               myBuy()
                      }});
             return resolve();
            // setTimeout(waitForFoo, 30);
@@ -285,7 +293,7 @@ function ensureSell() {
         (function waitForSell(){
            const syncSellToken = sellToken.filter((i) => {
              	if(i > 1212){
-               myFunc()
+               mySell()
                      }});
             return resolve();
            // setTimeout(waitForFoo, 30);
@@ -295,10 +303,8 @@ function ensureSell() {
 
 console.log(ensureSell())
            
-            var high = Math.max(...trades) //accepts more than one val
+            var high = Math.max(...trades) 
             var low = Math.min(...trades)
-
-          // candle updates
             candleSeries.update({
                 time: currentBar.time + 60,
                 open: open,
