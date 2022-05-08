@@ -1,5 +1,39 @@
 
-/*Stop Lostt Alert */
+/*Profit & Lost DashBoard */
+#dashBoard{
+background-color: #ffc766;
+border-left: 4px solid #ffa502;
+padding: 1% 20%;
+width: 10px;
+height: 40px;
+border-radius: 40px;
+bottom: 30px;
+right: 0;
+overflow: hidden;
+display: flex;
+justify-content: center;
+}
+
+h4{
+color: #000808;
+}
+
+#Total{
+color:#000808;
+border-style: initial;
+}
+
+#Wins{
+    color:#000808;
+    border-style: initial;
+}
+
+#Losts{
+    color:#000808;
+    border-style: initial;
+}
+
+/*Stop Lost Alert */
 #alert{
     background-color: blanchedalmond;
     margin-right: 30px;
