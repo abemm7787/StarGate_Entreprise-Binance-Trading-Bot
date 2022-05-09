@@ -322,7 +322,7 @@ socket.onmessage = function starGate(event, stop) {
 
     let priceDashboard = document.getElementById("Total") 
 
-    function priceDisplay(pro){
+    function  priceDisplay(pro){
 
 return priceDashboard.innerHTML = pro
     }
@@ -341,14 +341,20 @@ return priceLosts.innerHTML = lost
 
 
 
+
     function makeProfit(num, buy) {
-        var closePrice = 30
+
+     var closePrice = [150, 170].reduce(function(a,b){
+return  a + b;
+
+     })
+  
         let profit = 0
         let wins = 0
         let lost = 0
         var negativePoints = -1
-        if (closePrice > buy) {
-            for (let i = buy; closePrice < i; i++) {
+        if (closePrice > buy){      
+            for (let i = buy; i < closePrice ; i++){
                 profit += num
                 wins += num
             }
@@ -358,19 +364,25 @@ return priceLosts.innerHTML = lost
             for (let i = buy; closePrice < i; i--) {
                 profit += negativePoints
                 lost += negativePoints
+          
             }
 
-            priceDisplay(profit)
-            winsDisplay(wins)
-            lostDisplay(lost)
-
         }
+     
+        priceDisplay(profit)
+        winsDisplay(wins)
+        lostDisplay(lost)
+
 
     }
 
-let points = 1;
-let buyOrder = 40;
-
+ let points = 1;
+ let buyOrder = [100,100].reduce(function(a,b){
+    return  a + b;
+    
+         })
+// var buyToken
+// var sellToken
 
 console.log(makeProfit(points, buyOrder))
 
