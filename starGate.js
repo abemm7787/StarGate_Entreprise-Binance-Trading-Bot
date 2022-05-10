@@ -85,6 +85,7 @@ function addSell_element_to_array() {
     sellToken = Object.values(arraySell) // converts objects to arrays
 }
 
+
 function display_array() {
     var e = "<hr/>";
     for (var y = 0; y < stopLoss.length; y++) {
@@ -93,7 +94,7 @@ function display_array() {
 
     }
     for (var b = 0; b < buyOrder.length; b++) {
-        e += "Purcahse Order Pushed  " + buyOrder[b] + " ..." + "Smart Index " + b + "<br/>"
+        e += "Purchase Order Pushed  " + buyOrder[b] + " ..." + "Smart Index " + b + "<br/>"
     }
     for (var s = 0; s < sellOrder.length; s++) {
         e += "Price Sold For  " + sellOrder[s] + " ..." + "Smart Index " + s + "<br/>"
@@ -253,7 +254,7 @@ socket.onmessage = function starGate(event, stop) {
             var open = trades[0]
             var close = trades[trades.length - 1]
             var round = Math.round(close)
-            
+
 
 
             // I had to put a promise here to perform a async and await call.
@@ -320,75 +321,141 @@ socket.onmessage = function starGate(event, stop) {
 
     // Price DashBoard
 
-    let priceDashboard = document.getElementById("Total") 
+    let priceDashboard = document.getElementById("Total")
 
-    function  priceDisplay(pro){
+    function priceDisplay(pro) {
 
-return priceDashboard.innerHTML = pro
+        return priceDashboard.innerHTML = pro
     }
 
 
-    let priceWins = document.getElementById("Wins") 
-
-    function winsDisplay(win){
-
-return priceWins.innerHTML = win
-    }
-    let priceLosts = document.getElementById("Losts") 
-    function lostDisplay(lost){
-return priceLosts.innerHTML = lost
-    }
+    let priceWins = document.getElementById("Wins")
 
 
 
+    console.log(buyToken)
+    console.log(sellToken)
 
-    function makeProfit(num, buy) {
 
-     var closePrice = [150, 170].reduce(function(a,b){
-return  a + b;
 
-     })
+    var mySumSell = sellToken;
+    var mySumBuy = buyToken;
+
+
+    function makeProfit(num) {
+
+        var negativeArray = []
   
+        for (let j = 0; mySumBuy.length > j; j++) {
+            let negativenum = -Math.abs(mySumBuy[j])
+            negativeArray.push(negativenum)
+        }
+
+
+    // function winsDisplay(win) {
+
+    //     return priceWins.innerHTML = win
+    // }
+    // let priceLosts = document.getElementById("Losts")
+    // function lostDisplay(lost) {
+    //     return priceLosts.innerHTML = lost
+    // }
+        
+//     let priceTag = [...mySumSell, ...negativeArray]
+
+// console.log(priceTag)
+
+
+
+// function makeSumSum(arg){
+//     var reduces = 0
+
+//   return arg.reduce(function(a, b) {
+
+//      reduces +=  a + b;
+//     console.log(reduces)
+//      return reduces    
+
+//     })
+
+    
+// }
+
+// let newPrice = priceTag
+
+
+
+// if( sellToken  >  buyToken  ){
+
+// var fme = makeSumSum(newPrice)
+
+// }
+
+
+
+        let mySellSum = mySumSell.reduce(function (a, b) {
+
+            return a + b;
+
+        })
+        console.log(mySellSum)
+
+        let myBuySum = mySumBuy.reduce(function (a, b) {
+            return a + b;
+
+        })
+        console.log(myBuySum)
+
+
+
+
         let profit = 0
-        let wins = 0
+        // let wins = 0
         let lost = 0
         var negativePoints = -1
-        if (closePrice > buy){      
-            for (let i = buy; i < closePrice ; i++){
+
+
+
+
+
+        if (mySellSum > myBuySum) {
+
+            for (let i = myBuySum; i < mySellSum; i++) {
                 profit += num
-                wins += num
+                // wins += num
+
             }
 
+
+
         }
-        else{
-            for (let i = buy; closePrice < i; i--) {
+        else {
+            for (let i = myBuySum; mySellSum < i; i--) {
                 profit += negativePoints
                 lost += negativePoints
-          
+
             }
 
         }
-     
-        priceDisplay(profit)
-        winsDisplay(wins)
-        lostDisplay(lost)
 
+
+        priceDisplay(profit)
+        // winsDisplay(fme)
+        // lostDisplay(lost)
+
+
+
+        
 
     }
 
- let points = 1;
- let buyOrder = [100,100].reduce(function(a,b){
-    return  a + b;
-    
-         })
-// var buyToken
-// var sellToken
+    let points = 1;
 
-console.log(makeProfit(points, buyOrder))
+
+
+makeProfit(points)
 
 }
-
-
 
 
 
