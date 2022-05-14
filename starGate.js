@@ -1,4 +1,3 @@
-
 const url = "wss://stream.data.alpaca.markets/v1beta1/crypto";
 // obtaing real-time crypto data
 const socket = new WebSocket(url)
@@ -13,6 +12,7 @@ socket.onmessage = function (event) {
     }
 
 }
+
 
 const KEY = "AK90GPPM09UD1UMQBOOS"
 const SECRET = "CkT5Hvi7YYu9KLhco9dPGEXLQdjOrocVm9U4tvap"
@@ -40,6 +40,7 @@ function updateValue(e) {
 var z = 0
 var sellOrder = Array();
 let arraySell = []
+var multipass
 // Buy
 var y = 0
 var buyOrder = Array();
@@ -49,11 +50,35 @@ var x = 0
 var stopLoss = Array();
 let arrayAbove = []
 
+//Marker Indication 
+function getmyShit(){
+    console.log("get my shit")
+
+    console.log("Looky looky, right here, right here right here!")
+    var timer = (Math.round(new Date().getTime()/1000) - 0);
+   var markers = [
+       {
+           time: timer,
+                   position: 'belowBar',
+                   color: 'green',
+           shape: 'arrowUp',
+       },
+        {
+           time: timer,
+                   position: 'aboveBar',
+                   color: 'red',
+           shape: 'arrowDown',
+           },
+   ];
+   candleSeries.setMarkers(markers);
+    alert("Make Drawing");
+}
+
+
+
 
 // StopLoss
 function add_element_to_array() {
-
-
     stopLoss[x] = document.getElementById("text1").value;
     arrayAbove.push(parseFloat(stopLoss[x].replace(/[a-z]/i, '')
     ))
@@ -61,8 +86,6 @@ function add_element_to_array() {
     x++;
     //document.getElementById("stopLoss").value = "";
     stopLosstoken = Object.values(arrayAbove)
-
-
 }
 // BuyOrder
 function addBuy_element_to_array() {
@@ -93,8 +116,12 @@ function addSell_element_to_array() {
     z++;
 
     sellToken = Object.values(arraySell) // converts objects to arrays
+
+   multipass =  document.getElementById("demo").innerHTML = document.getElementById("mySelect").selectedIndex;
+console.log(typeof(multipass))
 }
 
+console.log(multipass)
 
 function display_array() {
     var e = "<hr/>";
@@ -240,8 +267,11 @@ socket.onmessage = function starGate(event, stop) {
         if (type == 't') {
             const tradeElement = document.createElement("div")
             tradeElement.className = 'trade'
-            tradeElement.innerHTML = `<b>${data[key].t}</b>  ${data[key].p} ${data[key].s}`;
+             tradeElement.innerHTML = `<b>${data[key].t}</b>  ${data[key].p} ${data[key].s}`;
+            tradeElement.innerHTML = ` ${data[key].p}}`;
             tradesElement.appendChild(tradeElement)
+
+            
 
             var elements = document.getElementsByClassName('trade')
             if (elements.length > 10) {
@@ -260,6 +290,31 @@ socket.onmessage = function starGate(event, stop) {
                     close: bar.c,
                 }
                 candleSeries.update(currentBar)
+
+
+                $('.play').click(function(){
+                    console.log("Looky looky")
+                 var timer = (Math.round(new Date().getTime()/1000) - 0);
+                var markers = [
+                    {
+                        time: timer,
+                                position: 'belowBar',
+                                color: 'green',
+                        shape: 'arrowUp',
+                    },
+                     {
+                        time: timer,
+                                position: 'aboveBar',
+                                color: 'red',
+                        shape: 'arrowDown',
+                        },
+                ];
+                candleSeries.setMarkers(markers);
+                 alert("Make Drawing");
+                });
+
+
+
             }
 
             trades.push(data[key].p)
@@ -296,10 +351,9 @@ socket.onmessage = function starGate(event, stop) {
                 return new Promise(function (resolve, reject) {
                     (function waitForBuy() {
                         const syncBuyToken = buyToken.filter((i) => {
-                            if (i > 1212) {
-                                myBuy()
-                            }
-                        });
+                            if (i > 1212) { 
+                        myBuy()
+                    } });
                         return resolve();
                         // setTimeout(waitForFoo, 30);
                     })();
@@ -308,6 +362,7 @@ socket.onmessage = function starGate(event, stop) {
             ensureBuy()
             function ensureSell() {
                 return new Promise(function (resolve, reject) {
+
                     (function waitForSell() {
                         const syncSellToken = sellToken.filter((i) => {
                             if (i > 1212) {
@@ -332,6 +387,9 @@ socket.onmessage = function starGate(event, stop) {
                 close: close,
 
             })
+            console.log( currentBar,time)
+
+
         }
     }
 
@@ -400,8 +458,6 @@ socket.onmessage = function starGate(event, stop) {
 
         // }
 
-
-
         let mySellSum = mySumSell.reduce(function (a, b) {
 
             return a + b;
@@ -415,16 +471,10 @@ socket.onmessage = function starGate(event, stop) {
         })
         console.log(myBuySum)
 
-
-
-
         let profit = 0
         // let wins = 0
         let lost = 0
         var negativePoints = -1
-
-
-
 
 
         if (mySellSum > myBuySum) {
@@ -434,8 +484,6 @@ socket.onmessage = function starGate(event, stop) {
                 // wins += num
 
             }
-
-
 
         }
         else {
@@ -451,10 +499,6 @@ socket.onmessage = function starGate(event, stop) {
         priceDisplay(profit)
         // winsDisplay(fme)
         // lostDisplay(lost)
-
-
-
-
 
     }
 

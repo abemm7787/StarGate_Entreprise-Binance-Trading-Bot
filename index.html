@@ -125,17 +125,25 @@
       <div id="chart2"> </div>
 
 
-
+<!--  -->
       <h1>Stop Lost <h1>
     </div>
-    <input placeholder="Enter Limit" type="text" id="text1"></input>
-    <button id="stopLoss" value="Add" onclick="add_element_to_array()"> Add </button>
+    
+    <input   placeholder="Enter Limit" type="text" id="text1"></input> 
+    <button id="stopLoss" value="Add" onclick="add_element_to_array()"> Add </button>  <!--toggle2 "set time to 15 secounds" -->  <!--toggle3 set time to 30 secounds -->
     <input type="button" id="button2" value="Display" onclick="display_array();"></input>
-    <div id="Result"></div>
 
+  
+    <div id="Result"></div>
+    
+ 
+
+    <button class="play" type="button" onclick="getmyShit()"  style="padding: 10px;background: brown;color:#fff;"> CLICK TO PLAY GAME TO DRAW ANOTATION >></button>
+    
+    
     <h1>Buy </h1>
     <input placeholder="Enter Limit" type="text" id="buyText"></input>
-    <button id="buyOrder" value="Add" onclick="addBuy_element_to_array()"> Add </button>
+    <button id="buyOrder" value="Add"  onclick="addBuy_element_to_array()"> Add </button>
 
     <input type="button" id="button2" value="Display" onclick="display_array();"></input>
     <div id="Result"></div>
@@ -143,9 +151,24 @@
 
     <h1>Sell </h1>
     <input placeholder="Enter Limit" type="text" id="sellText"></input>
-    <button id="stopLoss" value="Add" onclick="addSell_element_to_array()"> Add </button>
+    <button id="stopLoss" value="Add"  onclick="addSell_element_to_array()"> Add </button>
+
+    <form>
+      Select your favorite fruit:
+      <select id="mySelect">
+        <option>Apple</option>
+        <option>Orange</option>
+        <option>Pineapple</option>
+        <option>Banana</option>
+      </select>
+      </form>
+      <p id="demo"></p>
+
+  
     <input type="button" id="button2" value="Display" onclick="display_array();"></input>
     <div id="Result"></div>
+  
+   
 
   </div>
   </div>
